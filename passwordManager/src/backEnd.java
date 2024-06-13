@@ -57,6 +57,7 @@ public class backEnd {
         System.out.println("Please enter your new password: ");
         newPassword = password.nextLine();
         }
+        Encryption.encode(newPassword);
 
         password.close();
 
