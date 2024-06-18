@@ -1,12 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.*;
 
 
 public class backEnd {
 
     public static void getData(){
-        File file = new File("src/data/data.text");
+        File file = new File("src/data/data.txt");
 
         try {
             Scanner scanner = new Scanner(file);
@@ -57,14 +58,29 @@ public class backEnd {
         System.out.println("Please enter your new password: ");
         newPassword = password.nextLine();
         }
-        Encryption.encode(newPassword);
+        String encrypted = Encryption.encode(newPassword);
+
+        try{
+            FileWriter writer = new FileWriter("src/data/data.txt");
+            //writer.write(encrypted);
+            writer.close();
+            System.out.println("Password was saved");
+        }
+        catch (Exception e){
+            System.out.println("Something went wrong with saving");
+        }
 
         password.close();
+    }
+
+    public static void display(){
 
     }
 
 
     public static void main(String[] args){
+        App.GUI();
         getData();
+        display();
     }
 }
