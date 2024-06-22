@@ -18,7 +18,7 @@ public class backEnd {
                 }
                 catch (NoSuchElementException e){
                 
-                freshStart();
+                
                 
                 }
             
@@ -45,20 +45,20 @@ public class backEnd {
 
     }
 
-    public static void freshStart(){
+    public static void freshStart(String pass){
         String newPassword;
 
-        Scanner password = new Scanner(System.in);
+        //Scanner password = new Scanner(System.in);
 
-        System.out.println("Please enter your new password: ");
-        newPassword = password.nextLine();
+        //System.out.println("Please enter your new password: ");
+        //newPassword = password.nextLine();
 
-        while (newPassword.length() < 8){
-        System.out.println("Password needs to be more than 8 characters");
-        System.out.println("Please enter your new password: ");
-        newPassword = password.nextLine();
-        }
-        String encrypted = Encryption.encode(newPassword);
+        //while (newPassword.length() < 8){
+        //System.out.println("Password needs to be more than 8 characters");
+        //System.out.println("Please enter your new password: ");
+        //newPassword = password.nextLine();
+        //}
+        String encrypted = Encryption.encode(pass);
 
         try{
             FileWriter writer = new FileWriter("src/data/data.txt");
@@ -70,7 +70,9 @@ public class backEnd {
             System.out.println("Something went wrong with saving");
         }
 
-        password.close();
+
+        System.out.println(encrypted);
+        //password.close();
     }
 
     public static void display(){
