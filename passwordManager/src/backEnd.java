@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.*;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 
 public class backEnd {
 
@@ -17,9 +20,7 @@ public class backEnd {
                 firstLine = scanner.nextLine();
                 }
                 catch (NoSuchElementException e){
-                
-                
-                
+                    
                 }
             
 
@@ -81,8 +82,14 @@ public class backEnd {
 
 
     public static void main(String[] args){
-        App.GUI();
+        //App.GUI();
         getData();
         display();
+        //launch(args);
     }
+
+    //@Override
+    //public void start(Stage primaryStage) throws Exception {
+        //controller.start(primaryStage);
+    //}
 }
