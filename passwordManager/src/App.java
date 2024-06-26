@@ -16,7 +16,7 @@ public class App {
     
     public static JButton b, b1, b2;
     public static JPasswordField passwordField = new JPasswordField();
-    public static JLabel createText;
+    public static JLabel createText, incorrect;
     
 
    
@@ -24,7 +24,8 @@ public class App {
     public static void GUI() {
         
         frame.setLayout(new BorderLayout());
-
+        
+        panel.setBackground(Color.WHITE);
         createText = new JLabel("Enter a new Password");
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -45,23 +46,42 @@ public class App {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 4;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(passwordField, gbc);
+        gbc.gridheight = 6;
+        //gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(passwordField, BorderLayout.CENTER);
 
         gbc.gridx = 1;
         gbc.gridy = 4;
         gbc.gridwidth = 4;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(b, gbc);
+        gbc.gridheight = 6;
+        //gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(b, BorderLayout.CENTER);
 
 
 
         
         b.addActionListener(new ActionListener() {
+            int duplicateClick = 0;
             public void actionPerformed(ActionEvent e){
-                String ello = "Ollo";
+                String ello = String.valueOf(passwordField.getPassword());
 
+                if (ello.length() < 8 && duplicateClick == 0){
+                    incorrect = new JLabel("Password does not contain atleast 8 characters");
+                    incorrect.setBackground(Color.RED);
+                    gbc.gridx = 0;
+                    gbc.gridy = 5;
+                    gbc.gridheight = 6;
+                    panel.add(incorrect, gbc);
+                    frame.setVisible(true);
+                    duplicateClick += 1;
+                }
+                else if (ello.length() < 8 && duplicateClick >= 1){
+
+                }
+                else{
                 backEnd.freshStart(ello);
+                }
+
             }
         });
         
